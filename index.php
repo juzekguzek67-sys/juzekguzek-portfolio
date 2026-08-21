@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuzekGuzek | Web Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #FAFAFB;
+            --card-bg: #FFFFFF;
+            --yellow: #FFCC00;
+            --yellow-hover: #E6B800;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --border: #E5E5E5;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --theme-glow-1: rgba(255, 204, 0, 0.6);
+            --theme-glow-2: rgba(255, 180, 0, 0.45);
+            --theme-particle: rgba(255, 180, 0, 0.6);
+            --theme-particle-shadow: rgba(255, 204, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .preloader-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            animation: pulseFade 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseFade {
+            0% { opacity: 0.6; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .loading-bar-wrapper {
+            width: 200px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--yellow);
+            border-radius: 10px;
+            animation: loadProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            40% { width: 60%; }
+            100% { width: 100%; }
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background-color: #FAFAFB;
+            overflow: hidden;
+        }
+
+        .bg-animation::before,
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: glowMove 12s ease-in-out infinite alternate;
+            transition: background 0.8s ease;
+        }
+
+        .bg-animation::before {
+            background: var(--theme-glow-1);
+            top: -100px;
+            left: -100px;
+        }
+
+        .bg-animation::after {
+            background: var(--theme-glow-2);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -6s;
+            animation-duration: 15s;
+        }
+
+        @keyframes glowMove {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(250px, 150px) scale(1.2); }
+            100% { transform: translate(100px, 300px) scale(0.9); }
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--theme-particle);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--theme-particle-shadow);
+            animation: rain linear infinite;
+            transition: background 0.8s ease, box-shadow 0.8s ease;
+        }
+
+        @keyframes rain {
+            0% { transform: translateY(-50px); opacity: 0; }
+            20% { opacity: 0.9; }
+            80% { opacity: 0.9; }
+            100% { transform: translateY(105vh); opacity: 0; }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 250, 251, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 20px 8%;
+            z-index: 1000;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-self: start;
+        }
+
+        .navbar-center {
+            justify-self: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            background: rgba(255, 204, 0, 0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-badge {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--yellow);
+            color: #111;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        nav {
+            justify-self: end;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 140px 8% 80px 8%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title span {
+            background: var(--yellow);
+            color: #111;
+            padding: 0 6px;
+            border-radius: 4px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--yellow);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .typing-box {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            min-height: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--text-main);
+            color: #FFFFFF;
+            padding: 16px 32px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--yellow);
+            color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: #FFFFFF;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 16px 32px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+            max-width: 800px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .stat-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 6px; height: 100%;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--yellow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card:hover::before {
+            width: 8px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 204, 0, 0.15);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .info-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            width: 8px; height: 100%;
+            background: var(--yellow);
+            transition: background 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--yellow);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .project-logo img {
+            width: 75px;
+            height: 75px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .project-info h3 {
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .project-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--text-muted);
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 6px;
+            color: var(--text-main);
+        }
+
+        .project-link-btn {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+
+        .project-card:hover .project-link-btn {
+            gap: 10px;
+            color: #d97706;
+        }
+
+        @media(max-width: 900px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            header { grid-template-columns: 1fr auto; }
+            .navbar-center { display: none; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body class="no-scroll">
+
+    <div id="preloader">
+        <div class="preloader-logo">
+            <span class="logo-text">JuzekGuzek</span>
+            <span class="logo-badge">WEB DESIGNER</span>
+        </div>
+        <div class="loading-bar-wrapper">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
+
+    <div class="bg-animation" id="bg-animation"></div>
+
+    <header>
+        <a href="#home" class="logo">
+            <span class="logo-text">JuzekGuzek</span>
+            <span class="logo-badge">WEB DESIGNER</span>
+        </a>
+        
+        <div class="navbar-center">Portfolio</div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Start</a></li>
+                <li><a href="#info">Informacje</a></li>
+                <li><a href="#works">Realizacje</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <div class="hero-tag">PROFESJONALNE STRONY WWW & SYSTEMY</div>
+            <h1>Stwórz ze mną swoją<br>wymarzoną stronę.</h1>
+            <div class="typing-box">
+                <span id="typed"></span>
+            </div>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Rozpocznij współpracę</a>
+                <a href="#works" class="btn-secondary">Zobacz realizacje</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <h4>100%</h4>
+                    <p>Autorski kod bez ciężkich szablonów</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Indywidualnie</h4>
+                    <p>Dopasowanie pod każdy projekt</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Szybko</h4>
+                    <p>Sprawna realizacja i stały kontakt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info">
+        <h2 class="section-title">Ważne <span>informacje</span></h2>
+        <div class="info-grid">
+            
+            <div class="info-card">
+                <div class="info-icon">⏱️</div>
+                <h3>Elastyczny czas realizacji</h3>
+                <p>Każdy projekt traktuję priorytetowo i indywidualnie. Harmonogram prac oraz ostateczny termin oddania projektu są ściśle dopasowywane do stopnia skomplikowania Twojego zamówienia, gwarantując terminowość i najwyższą staranność.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">💎</div>
+                <h3>Przejrzysta wycena</h3>
+                <p>Nie stosuję sztywnych, ukrytych kosztów. Wycena każdego serwisu, strony internetowej czy systemu opiera się na Twoich realnych potrzebach, dzięki czemu inwestujesz dokładnie w te funkcjonalności, które przyniosą wartość Twojemu projektowi.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">⚡</div>
+                <h3>Czysty kod i wydajność</h3>
+                <p>Wszystkie projekty buduję w 100% autorsko od podstaw. Unikam opierań na ciężkich, gotowych szablonach, co zapewnia niespotykaną prędkość ładowania, pełne bezpieczeństwo oraz bezproblemową skalowalność w przyszłości.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="works">
+        <h2 class="section-title">Moje <span>realizacje</span></h2>
+        <div class="projects-grid">
+            
+            <a href="apexcode.php" class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-logo">
+                            <img src="apexcode.png" alt="ApexCode Logo">
+                        </div>
+                        <div class="project-info">
+                            <h3>APEXCODE.PL</h3>
+                            <span class="project-tag">PLATFORMA WEBOWA</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">
+                        Dedykowana platforma oraz wizytówka dla projektów i społeczności. Zbudowana z naciskiem na maksymalną wydajność, unikalny design i płynne działanie.
+                    </p>
+                </div>
+                <div class="project-footer">
+                    <div class="tech-stack">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">UI/UX</span>
+                    </div>
+                    <span class="project-link-btn">Sprawdź projekt &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://noxiscode.pl/" target="_blank" class="project-card">
+                <div>
+                    <div class="project-header">
+                        <div class="project-logo">
+                            <img src="noxiscode-logo.png" alt="NoxisCode Logo">
+                        </div>
+                        <div class="project-info">
+                            <h3>NOXISCODE.PL</h3>
+                            <span class="project-tag" style="color: #9333ea; background: rgba(147, 51, 234, 0.1);">PROJEKT PARTNERSKI</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">
+                        Autorski projekt Dark_Matixa. Współpracujemy jako oficjalni partnerzy, łącząc moje projekty z jego zaawansowanym zapleczem informatycznym.
+                    </p>
+                </div>
+                <div class="project-footer">
+                    <div class="tech-stack" style="display: flex; align-items: center; gap: 8px;">
+                        <img src="matix.png" alt="Dark_Matix" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border);">
+                        <span class="tech-badge" style="font-family: 'JetBrains Mono', monospace;">Dark_Matix</span>
+                    </div>
+                    <span class="project-link-btn">Odwiedź noxiscode.pl &rarr;</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title" style="margin-bottom: 40px; text-align: center;">Gotowy na <span>nowy projekt?</span></h2>
+        
+        <div style="max-width: 850px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 50px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); position: relative;">
+            
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 25px;">
+                <img src="noxiscode-logo.png" alt="NoxisCode Logo" style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border);">
+                <div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 2px; color: #9333ea; font-weight: 800;">Noxiscode.pl | Prawdziwa moc nie potrzebuje światła</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Oficjalny partner technologiczny</p>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <p style="color: var(--text-muted); line-height: 1.8; font-size: 1.05rem;">
+                    Dumnie współpracuję z <strong>NoxisCode</strong> jako moim oficjalnym partnerem technologicznym. 
+                    Nasza synergia łączy autorskie podejście do designu i czystego kodu z zaawansowanym zapleczem informatycznym. 
+                    Dzięki temu każdy realizowany projekt spełnia najwyższe standardy wydajności, bezpieczeństwa i profesjonalizmu.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 35px;">
+                <a href="https://noxiscode.pl/" target="_blank" style="background: #f0f0f0; color: var(--text-main); padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: all 0.2s; border: 1px solid var(--border);">
+                    Odwiedź naszą stronę Noxiscode.pl
+                </a>
+                <a href="https://discord.gg/4sauYgK4JA" target="_blank" style="background: var(--text-main); color: #fff; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: all 0.2s; border: 1px solid var(--text-main);">
+                    Dołącz na naszego discorda! &rarr;
+                </a>
+            </div>
+
+            <div style="border-top: 1px solid var(--border); padding-top: 20px; display: flex; align-items: center; gap: 10px;">
+                <img src="matix.png" alt="Dark_Matix" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; border: 1px solid var(--yellow);">
+                <p style="font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin: 0;">
+                    Dark_Matix | CEO Noxiscode.pl
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                document.body.classList.remove('no-scroll');
+            }, 1500); 
+        });
+
+        new Typed('#typed', {
+            strings: [
+                "Nowoczesne podejście, czysty kod i unikalny styl.",
+                "Stwórz stronę, która wyróżni Cię w sieci.",
+                "Zrealizuj swój projekt szybko i profesjonalnie."
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+
+        const container = document.getElementById('bg-animation');
+        for (let i = 0; i < 65; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 5 + 3;
+            particle.style.width = size + 'px';
+            particle.style.height = (size * 1.5) + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(particle);
+        }
+
+        const contactSection = document.getElementById('contact');
+        const rootElement = document.documentElement;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    rootElement.style.setProperty('--theme-glow-1', 'rgba(147, 51, 234, 0.5)');
+                    rootElement.style.setProperty('--theme-glow-2', 'rgba(126, 34, 206, 0.4)');
+                    rootElement.style.setProperty('--theme-particle', 'rgba(147, 51, 234, 0.6)');
+                    rootElement.style.setProperty('--theme-particle-shadow', 'rgba(168, 85, 247, 0.5)');
+                } else {
+                    rootElement.style.setProperty('--theme-glow-1', 'rgba(255, 204, 0, 0.6)');
+                    rootElement.style.setProperty('--theme-glow-2', 'rgba(255, 180, 0, 0.45)');
+                    rootElement.style.setProperty('--theme-particle', 'rgba(255, 180, 0, 0.6)');
+                    rootElement.style.setProperty('--theme-particle-shadow', 'rgba(255, 204, 0, 0.5)');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(contactSection);
+    </script>
+</body>
+</html>
