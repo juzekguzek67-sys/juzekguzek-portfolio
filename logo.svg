@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Tło w stylu Twojego żółtego badge'a -->
+  <rect width="64" height="64" rx="16" fill="#FACC15"/>
+  <!-- Inicjały JG w kolorze ciemnego grafitu/czerni -->
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="28" fill="#111827">JG</text>
+</svg>
