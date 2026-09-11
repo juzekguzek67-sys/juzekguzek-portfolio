@@ -42,6 +42,7 @@
 
         body.no-scroll { overflow: hidden; }
 
+        /* PRELOADER I TŁO */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: var(--bg); z-index: 99999;
@@ -62,6 +63,7 @@
         .particle { position: absolute; background: var(--theme-particle); border-radius: 50%; box-shadow: 0 0 6px var(--theme-particle-shadow); animation: rain linear infinite; }
         @keyframes rain { 0% { transform: translateY(-50px); opacity: 0; } 20% { opacity: 0.9; } 80% { opacity: 0.9; } 100% { transform: translateY(105vh); opacity: 0; } }
 
+        /* HEADER */
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(250, 250, 251, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 8%; z-index: 1000; }
         .logo { text-decoration: none; display: flex; align-items: center; gap: 10px; justify-self: start; }
         .navbar-center { justify-self: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; background: rgba(255, 204, 0, 0.15); padding: 6px 16px; border-radius: 20px; border: 1px solid rgba(255, 204, 0, 0.3); }
@@ -72,6 +74,7 @@
         nav a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
         nav a:hover, nav a.active { color: var(--text-main); }
 
+        /* SEKCJA ZAMÓWIENIA */
         section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 140px 8% 80px 8%; max-width: 1300px; margin: 0 auto; }
         .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 30px; letter-spacing: -0.5px; }
         .section-title span { background: var(--yellow); color: #111; padding: 0 6px; border-radius: 4px; }
@@ -102,6 +105,7 @@
 
         .selected-package-info { background: rgba(255, 204, 0, 0.15); border: 1px solid rgba(255, 204, 0, 0.3); padding: 16px; border-radius: 12px; margin-bottom: 25px; font-weight: 700; text-align: center; font-size: 1.1rem; }
 
+        /* KARTA POTWIERDZENIA ZAMÓWIENIA */
         .confirmation-card {
             background: var(--card-bg);
             border: 2px solid var(--green);
@@ -175,248 +179,314 @@
             .navbar-center, nav ul { display: none; }
         }
     </style>
-</head>
-<body class="no-scroll">
 
-    <div id="preloader">
-        <div class="preloader-logo">
-            <span class="logo-text">JuzekGuzek</span>
-            <span class="logo-badge">WEB DESIGNER</span>
-        </div>
-        <div class="loading-bar-wrapper">
-            <div class="loading-bar-fill"></div>
-        </div>
-    </div>
+    <!-- === LIQUID GLASS THEME v2 (tylko wyglad) === -->
+<style>
+/* ============================================================
+   JUZEKGUZEK — LIQUID GLASS THEME v2 (iOS-style)
+   Czysta warstwa wizualna. Treść i logika bez zmian.
+   ============================================================ */
 
-    <div class="bg-animation" id="bg-animation"></div>
+:root {
+    --bg: #06060a;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --yellow: #7C6CFF;
+    --yellow-hover: #22D3EE;
+    --text-main: #F7F8FC;
+    --text-muted: rgba(233, 238, 252, 0.60);
+    --border: rgba(255, 255, 255, 0.10);
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    --theme-glow-1: #7C6CFF;
+    --theme-glow-2: #22D3EE;
+    --theme-particle: rgba(210, 220, 255, 0.6);
+    --theme-particle-shadow: #7C6CFF;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-strong: rgba(255, 255, 255, 0.085);
+    --hairline: rgba(255, 255, 255, 0.12);
+    --accent: #7C6CFF;
+    --accent-2: #22D3EE;
+    --radius: 28px;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+}
 
-    <header>
-        <a href="index.html" class="logo">
-            <span class="logo-text">JuzekGuzek</span>
-            <span class="logo-badge">WEB DESIGNER</span>
-        </a>
-        
-        <div class="navbar-center">Zamów Stronę</div>
+html { color-scheme: dark; scroll-behavior: smooth; }
 
-        <nav>
-            <ul>
-                <li><a href="index.html#home">Start</a></li>
-                <li><a href="index.html#info">Informacje</a></li>
-                <li><a href="index.html#works">Realizacje</a></li>
-                <li><a href="zamowienia.html" class="active" style="color: var(--text-main);">Zamów stronę</a></li>
-                <li><a href="moje-zapytania.html">Moje zapytania</a></li>
-                <li><a href="index.html#contact">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
+body {
+    background-color: var(--bg) !important;
+    color: var(--text-main) !important;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.011em;
+}
 
-    <section id="order">
-        <h2 class="section-title">Zamów <span>stronę</span></h2>
-        
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Strona Statyczna</h3>
-                <div class="price">99,99<span>zł</span></div>
-                <div class="price-note">* Cena może ulec zmianie w zależności od stopnia zaawansowania projektu</div>
-                <ul>
-                    <li>Gotowe pliki (HTML, CSS, JS)</li>
-                    <li>Czysty i autorski kod</li>
-                    <li>Do samodzielnego wdrożenia</li>
-                    <li>Wysoka wydajność</li>
-                </ul>
-                <button class="btn-secondary select-package-btn" data-package="Strona Statyczna" data-price="99.99">Wybieram ten pakiet</button>
-            </div>
-            
-            <div class="pricing-card" style="border-color: var(--yellow); position: relative; box-shadow: 0 15px 40px rgba(255, 204, 0, 0.15);">
-                <div style="position: absolute; top: 18px; right: -35px; background: var(--yellow); color: #111; font-weight: 800; font-size: 0.75rem; padding: 5px 40px; transform: rotate(45deg);">POLECANE</div>
-                <h3>Kompleksowa Strona WWW</h3>
-                <div class="price">159,99<span>zł</span></div>
-                <div class="price-note">* Cena może ulec zmianie w zależności od stopnia zaawansowania projektu</div>
-                <ul>
-                    <li>Wszystko z pakietu plików</li>
-                    <li>W pełni podpięta domena/hosting</li>
-                    <li>Gotowa do użytku od zaraz</li>
-                    <li>Pomoc w konfiguracji</li>
-                </ul>
-                <button class="btn-primary select-package-btn" data-package="Kompleksowa Strona WWW" data-price="159.99">Wybieram pełny pakiet</button>
-            </div>
-        </div>
+@media (pointer: fine) {
+    html.lg-cursor, html.lg-cursor * { cursor: none !important; }
+}
 
-        <div id="order-form-wrapper" class="order-form-container">
-            <div class="selected-package-info">
-                Wybrany pakiet: <span id="selected-package-name" style="color: #d97706;">Brak</span>
-                <div id="package-price-display" style="margin-top: 6px; font-size: 1rem;"></div>
-            </div>
-            <form id="order-form">
-                <div class="form-group">
-                    <label for="email">Twój adres e-mail</label>
-                    <input type="email" name="email" id="email" required placeholder="np. jan@kowalski.pl">
-                </div>
-                <div class="form-group">
-                    <label for="type">Jaka to ma być strona?</label>
-                    <input type="text" name="type" id="type" required placeholder="np. Portfolio, Strona serwera, Wizytówka, Sklep">
-                </div>
-                <div class="form-group">
-                    <label for="description">Dokładny opis projektu</label>
-                    <textarea id="description" name="description" rows="5" required placeholder="Opisz dokładnie jak ma wyglądać strona, jakie funkcje są potrzebne, jaka kolorystyka Cię interesuje itp."></textarea>
-                </div>
+/* ---------- Żywe tło: mesh orby + siatka + ziarno ---------- */
+.bg-animation { background-color: var(--bg) !important; }
+.bg-animation::before,
+.bg-animation::after {
+    width: 900px !important;
+    height: 900px !important;
+    filter: blur(140px) !important;
+    opacity: 0.5 !important;
+}
+.bg-animation::before { background: radial-gradient(circle at 30% 30%, var(--accent), transparent 70%) !important; }
+.bg-animation::after  { background: radial-gradient(circle at 70% 70%, var(--accent-2), transparent 72%) !important; }
 
-                <button type="submit" class="btn-primary" style="width: 100%;">Wyślij zapytanie</button>
-            </form>
-        </div>
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(760px circle at var(--mx, 70%) var(--my, 12%), color-mix(in oklab, var(--accent-2) 18%, transparent), transparent 60%),
+        radial-gradient(640px circle at 10% 85%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 62%),
+        linear-gradient(180deg, rgba(6,6,10,0) 0%, rgba(6,6,10,0.9) 100%);
+    transition: background-position .3s linear;
+}
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.32;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 68px 68px;
+    mask-image: radial-gradient(circle at 50% 25%, #000 0%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at 50% 25%, #000 0%, transparent 80%);
+    animation: gridDrift 26s linear infinite;
+}
+@keyframes gridDrift { to { background-position: 68px 68px, 68px 68px; } }
 
-        <div id="confirmation-card" class="confirmation-card">
-            <div class="confirmation-header">
-                <div class="confirmation-icon">✓</div>
-                <div class="confirmation-title">Zamówienie zostało pomyślnie wysłane!</div>
-            </div>
-            <p style="color: var(--text-muted); font-size: 1.05rem;">Poniżej znajduje się podsumowanie Twojego zgłoszenia:</p>
-            
-            <div class="summary-box">
-                <div class="summary-item"><strong>Wybrany pakiet:</strong> <span id="summary-package">-</span></div>
-                <div class="summary-item"><strong>Cena:</strong> <span id="summary-price" style="font-weight: 700; color: var(--text-main);">-</span></div>
-                <div class="summary-item"><strong>Adres e-mail:</strong> <span id="summary-email">-</span></div>
-                <div class="summary-item"><strong>Typ strony:</strong> <span id="summary-type">-</span></div>
-                <div class="summary-item"><strong>Opis projektu:</strong><br><span id="summary-description" style="display: block; margin-top: 6px; white-space: pre-line; color: var(--text-main); word-break: break-word; overflow-wrap: anywhere;">-</span></div>
-            </div>
+.particle {
+    background: var(--theme-particle) !important;
+    box-shadow: 0 0 12px var(--theme-particle-shadow) !important;
+}
 
-            <div class="notice-box">
-                <span>✉️</span>
-                <span>Odpiszę na podany e-mail w ciągu max. 72 godzin!</span>
-            </div>
-        </div>
-    </section>
+/* ---------- Custom cursor ---------- */
+.lg-cursor-dot, .lg-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 2147483000;
+    pointer-events: none;
+    border-radius: 999px;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.lg-cursor-dot {
+    width: 7px; height: 7px;
+    margin: -3.5px 0 0 -3.5px;
+    background: #fff;
+    box-shadow: 0 0 14px color-mix(in oklab, var(--accent) 80%, transparent);
+}
+.lg-cursor-ring {
+    width: 40px; height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 1px solid rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(6px) saturate(160%);
+    transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease),
+                background .35s ease, border-color .35s ease, opacity .3s ease;
+}
+html.lg-ready .lg-cursor-dot, html.lg-ready .lg-cursor-ring { opacity: 1; }
+html.lg-hover .lg-cursor-ring {
+    width: 74px; height: 74px; margin: -37px 0 0 -37px;
+    background: color-mix(in oklab, var(--accent) 22%, transparent);
+    border-color: color-mix(in oklab, var(--accent) 70%, transparent);
+}
+html.lg-down .lg-cursor-ring { width: 28px; height: 28px; margin: -14px 0 0 -14px; }
 
-    <script>
-        const WEBHOOK_URL = 'https://juzekguzek-webhook.juzekguzek67.workers.dev';
+/* ---------- Preloader + przejścia stron ---------- */
+#preloader { background: var(--bg) !important; }
+.loading-bar-wrapper { background: rgba(255,255,255,0.08) !important; }
+.loading-bar-fill { background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important; }
 
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                setTimeout(() => {
-                    preloader.style.opacity = '0';
-                    preloader.style.visibility = 'hidden';
-                    document.body.classList.remove('no-scroll');
-                }, 500);
-            }
-        });
+.lg-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 2147482000;
+    pointer-events: none;
+    background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 85%, #06060a), color-mix(in oklab, var(--accent-2) 85%, #06060a));
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform .55s var(--ease);
+}
+.lg-transition.is-out { transform: scaleY(1); transform-origin: bottom; }
 
-        const container = document.getElementById('bg-animation');
-        if (container) {
-            for (let i = 0; i < 40; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 5 + 3;
-                particle.style.width = size + 'px';
-                particle.style.height = (size * 1.5) + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(particle);
-            }
-        }
+.lg-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    z-index: 2147482500;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 70%, transparent);
+    pointer-events: none;
+}
 
-        let currentPackage = {
-            name: '',
-            price: ''
-        };
+/* ---------- Pływający szklany header ---------- */
+header {
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(0);
+    width: calc(100% - 40px) !important;
+    max-width: 1240px;
+    padding: 13px 24px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(30px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+    border: 1px solid var(--hairline) !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.16);
+    transition: transform .5s var(--ease), background .4s ease, box-shadow .4s ease, padding .4s var(--ease);
+    animation: headerDrop 1s var(--ease) both .15s;
+}
+@keyframes headerDrop { from { opacity: 0; transform: translateX(-50%) translateY(-26px); } }
+header.lg-hidden { transform: translateX(-50%) translateY(-140%); }
+header.lg-scrolled {
+    padding: 9px 22px !important;
+    background: rgba(255,255,255,0.075) !important;
+    box-shadow: 0 26px 70px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(120deg, rgba(255,255,255,0.16), rgba(255,255,255,0) 44%);
+}
 
-        const packageButtons = document.querySelectorAll('.select-package-btn');
-        const formWrapper = document.getElementById('order-form-wrapper');
-        const packageNameDisplay = document.getElementById('selected-package-name');
-        const packagePriceDisplay = document.getElementById('package-price-display');
-        const orderForm = document.getElementById('order-form');
-        const confirmationCard = document.getElementById('confirmation-card');
+.logo-text { color: var(--text-main) !important; }
+.logo-badge {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
+    color: #06060a !important;
+    box-shadow: 0 8px 24px color-mix(in oklab, var(--accent) 45%, transparent);
+    border-radius: 9px !important;
+}
+.navbar-center, .visit-counter-badge {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--hairline) !important;
+    color: rgba(233,238,252,0.72) !important;
+    backdrop-filter: blur(14px);
+}
+nav ul { gap: 22px !important; }
+nav a {
+    color: var(--text-muted) !important;
+    position: relative;
+    transition: color .3s ease !important;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .4s var(--ease);
+}
+nav a:hover::after, nav a.active::after { transform: scaleX(1); transform-origin: left; }
+nav a:hover, nav a.active { color: #fff !important; }
 
-        packageButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const pkgName = e.target.getAttribute('data-package');
-                const pkgPrice = parseFloat(e.target.getAttribute('data-price'));
-                const priceFormatted = pkgPrice.toFixed(2).replace('.', ',') + ' zł';
+/* ---------- Typografia ---------- */
+.section-title, .page-title {
+    letter-spacing: -1.4px !important;
+    background: linear-gradient(180deg, #ffffff 20%, rgba(255,255,255,0.58) 100%);
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+}
+.section-title span, .page-title span, .hero h1 span {
+    background: linear-gradient(110deg, var(--accent), var(--accent-2), var(--accent)) !important;
+    background-size: 220% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    padding: 0 !important;
+    animation: shimmer 6s linear infinite;
+}
+@keyframes shimmer { to { background-position: 220% center; } }
+.subtitle, .page-header p { color: var(--text-muted) !important; }
 
-                currentPackage.name = pkgName;
-                currentPackage.price = priceFormatted;
-                
-                packageNameDisplay.textContent = pkgName;
-                packagePriceDisplay.innerHTML = `Cena: <strong>${priceFormatted}</strong>`;
+/* ---------- Hero ---------- */
+.hero h1, #home h1 { letter-spacing: -2.4px !important; }
+.hero-tag, .badge {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid var(--hairline) !important;
+    color: rgba(233,238,252,0.86) !important;
+    border-radius: 999px !important;
+    padding: 8px 18px !important;
+    backdrop-filter: blur(14px);
+    position: relative;
+    overflow: hidden;
+}
+.hero-tag::after, .badge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,0.28) 50%, transparent 80%);
+    transform: translateX(-120%);
+    animation: sweep 4.5s var(--ease) infinite;
+}
+@keyframes sweep { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.typing-box { color: var(--accent-2) !important; }
 
-                confirmationCard.style.display = 'none';
-                formWrapper.style.display = 'block';
-                formWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-        });
+/* ---------- Szkło: karty ---------- */
+.stat-card, .info-card, .project-card, .pricing-card, .order-card,
+.confirmation-card, .feature-card, .main-card, .preview-section,
+.order-form-container, .summary-box, .notice-box, .empty-state,
+.selected-package-info, .request-card, .status-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.085), rgba(255,255,255,0.03)) !important;
+    border: 1px solid var(--hairline) !important;
+    border-radius: var(--radius) !important;
+    backdrop-filter: blur(34px) saturate(170%);
+    -webkit-backdrop-filter: blur(34px) saturate(170%);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.14) !important;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform .5s var(--ease), border-color .4s ease, box-shadow .5s var(--ease);
+}
 
-        orderForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+/* liquid sheen + spotlight kursora */
+.stat-card::after, .info-card::after, .project-card::after, .pricing-card::after,
+.order-card::after, .feature-card::after, .main-card::after, .request-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        radial-gradient(340px circle at var(--px, 50%) var(--py, 0%), color-mix(in oklab, var(--accent) 20%, transparent), transparent 65%),
+        linear-gradient(125deg, rgba(255,255,255,0.18), rgba(255,255,255,0) 40%);
+    opacity: .85;
+    transition: opacity .4s ease;
+}
 
-            const submitBtn = orderForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Wysyłanie...';
+.stat-card:hover, .info-card:hover, .project-card:hover,
+.pricing-card:hover, .order-card:hover, .feature-card:hover, .request-card:hover {
+    border-color: color-mix(in oklab, var(--accent) 55%, transparent) !important;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.62),
+                0 0 0 1px color-mix(in oklab, var(--accent) 28%, transparent),
+                0 0 60px color-mix(in oklab, var(--accent) 26%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2) !important;
+}
 
-            const email = document.getElementById('email').value;
-            const type = document.getElementById('type').value;
-            const description = document.getElementById('description').value;
-
-            const orderId = Math.floor(1000 + Math.random() * 9000).toString();
-            const orderDate = new Date().toLocaleString('pl-PL', { dateStyle: 'medium', timeStyle: 'short' });
-
-            const newOrder = {
-                id: 'ORD-' + orderId,
-                date: orderDate,
-                package: `${currentPackage.name} (${currentPackage.price})`,
-                email: email,
-                type: type,
-                description: description,
-                status: 'Oczekujące'
-            };
-
-            const existingOrders = JSON.parse(localStorage.getItem('juzek_orders') || '[]');
-            existingOrders.unshift(newOrder);
-            localStorage.setItem('juzek_orders', JSON.stringify(existingOrders));
-
-            const requestData = {
-                orderId: orderId,
-                packageName: currentPackage.name,
-                finalPrice: currentPackage.price,
-                appliedCode: null,
-                email: email,
-                type: type,
-                description: description,
-                orderDate: orderDate
-            };
-
-            try {
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(requestData)
-                });
-
-                if (response.ok) {
-                    document.getElementById('summary-package').textContent = currentPackage.name;
-                    document.getElementById('summary-price').textContent = currentPackage.price;
-                    document.getElementById('summary-email').textContent = email;
-                    document.getElementById('summary-type').textContent = type;
-                    document.getElementById('summary-description').textContent = description;
-
-                    formWrapper.style.display = 'none';
-                    confirmationCard.style.display = 'block';
-                    confirmationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                    orderForm.reset();
-                } else {
-                    alert('Wystąpił błąd podczas wysyłania zgłoszenia. Spróbuj ponownie.');
-                }
-            } catch (error) {
-                console.error('Błąd wysyłania na Webhook:', error);
-                alert('Nie udało się połączyć z serwerem wysyłającym.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
-            }
-        });
-    </script>
-</body>
-</html>
+.info-card::before { background: linear-gradient(180deg, var(--accent), var(--accent-2)) !important; }
+.info-icon, .feature-icon, .confirmation-icon {
+    background: color-mix(in oklab, var(--accent) 18%, transparent) !important;
+    border: 1px solid color-mix(in oklab, var(--accent) 38%, transparent) !important;
+    border-radius: 18px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 10px 30px rgba(0,0,0,0.35);
+    transition: transform .5s var(--ease);
+}
+.info-card:hover .info-icon, .feature-card:hover .feature-i
