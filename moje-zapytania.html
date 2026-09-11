@@ -165,12 +165,8 @@
         }
     </style>
 
-    <!-- === LIQUID GLASS THEME v2 (tylko wyglad) === -->
+    
 <style>
-/* ============================================================
-   JUZEKGUZEK — LIQUID GLASS THEME v2 (iOS-style)
-   Czysta warstwa wizualna. Treść i logika bez zmian.
-   ============================================================ */
 
 :root {
     --bg: #06060a;
@@ -207,7 +203,7 @@ body {
     html.lg-cursor, html.lg-cursor * { cursor: none !important; }
 }
 
-/* ---------- Żywe tło: mesh orby + siatka + ziarno ---------- */
+
 .bg-animation { background-color: var(--bg) !important; }
 .bg-animation::before,
 .bg-animation::after {
@@ -253,7 +249,7 @@ body::after {
     box-shadow: 0 0 12px var(--theme-particle-shadow) !important;
 }
 
-/* ---------- Custom cursor ---------- */
+
 .lg-cursor-dot, .lg-cursor-ring {
     position: fixed;
     top: 0; left: 0;
@@ -286,7 +282,7 @@ html.lg-hover .lg-cursor-ring {
 }
 html.lg-down .lg-cursor-ring { width: 28px; height: 28px; margin: -14px 0 0 -14px; }
 
-/* ---------- Preloader + przejścia stron ---------- */
+
 #preloader { background: var(--bg) !important; }
 .loading-bar-wrapper { background: rgba(255,255,255,0.08) !important; }
 .loading-bar-fill { background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important; }
@@ -314,7 +310,7 @@ html.lg-down .lg-cursor-ring { width: 28px; height: 28px; margin: -14px 0 0 -14p
     pointer-events: none;
 }
 
-/* ---------- Pływający szklany header ---------- */
+
 header {
     top: 16px !important;
     left: 50% !important;
@@ -380,7 +376,7 @@ nav a::after {
 nav a:hover::after, nav a.active::after { transform: scaleX(1); transform-origin: left; }
 nav a:hover, nav a.active { color: #fff !important; }
 
-/* ---------- Typografia ---------- */
+
 .section-title, .page-title {
     letter-spacing: -1.4px !important;
     background: linear-gradient(180deg, #ffffff 20%, rgba(255,255,255,0.58) 100%);
@@ -402,7 +398,7 @@ nav a:hover, nav a.active { color: #fff !important; }
 @keyframes shimmer { to { background-position: 220% center; } }
 .subtitle, .page-header p { color: var(--text-muted) !important; }
 
-/* ---------- Hero ---------- */
+
 .hero h1, #home h1 { letter-spacing: -2.4px !important; }
 .hero-tag, .badge {
     background: rgba(255,255,255,0.06) !important;
@@ -425,7 +421,7 @@ nav a:hover, nav a.active { color: #fff !important; }
 @keyframes sweep { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 .typing-box { color: var(--accent-2) !important; }
 
-/* ---------- Szkło: karty ---------- */
+
 .stat-card, .info-card, .project-card, .pricing-card, .order-card,
 .confirmation-card, .feature-card, .main-card, .preview-section,
 .order-form-container, .summary-box, .notice-box, .empty-state,
@@ -442,7 +438,7 @@ nav a:hover, nav a.active { color: #fff !important; }
     transition: transform .5s var(--ease), border-color .4s ease, box-shadow .5s var(--ease);
 }
 
-/* liquid sheen + spotlight kursora */
+
 .stat-card::after, .info-card::after, .project-card::after, .pricing-card::after,
 .order-card::after, .feature-card::after, .main-card::after, .request-card::after {
     content: '';
@@ -481,7 +477,7 @@ nav a:hover, nav a.active { color: #fff !important; }
 .stat-card p, .info-card p, .project-desc, .price-note, .order-desc,
 .feature-card p, .detail-item, .summary-item { color: var(--text-muted) !important; }
 
-/* ---------- Pigułki ---------- */
+
 .tech-badge, .tech-stack span, .project-tag, .order-id, .order-date, .status-badge {
     background: rgba(255,255,255,0.07) !important;
     border: 1px solid var(--hairline) !important;
@@ -492,7 +488,7 @@ nav a:hover, nav a.active { color: #fff !important; }
 }
 .tech-badge:hover, .tech-stack span:hover, .project-tag:hover { transform: translateY(-2px); background: rgba(255,255,255,0.13) !important; }
 
-/* ---------- Przyciski ---------- */
+
 .btn-primary, button.btn-primary, .select-package-btn, .btn-secondary,
 button.btn-secondary, .project-link-btn, .back-btn, .submit-btn {
     border-radius: 999px !important;
@@ -541,7 +537,7 @@ button.btn-secondary, .project-link-btn, .back-btn, .submit-btn {
     color: #fff !important;
 }
 
-/* ---------- Formularze ---------- */
+
 input, textarea, select {
     background: rgba(255,255,255,0.05) !important;
     border: 1px solid var(--hairline) !important;
@@ -562,7 +558,7 @@ input:focus, textarea:focus, select:focus {
 option { background: #0c0c14; color: var(--text-main); }
 .form-group label { color: rgba(233,238,252,0.82) !important; }
 
-/* ---------- Cennik ---------- */
+
 .pricing-card.active, .pricing-card.featured, .pricing-card.selected {
     border-color: color-mix(in oklab, var(--accent) 65%, transparent) !important;
     box-shadow: 0 34px 90px rgba(0,0,0,0.62), 0 0 70px color-mix(in oklab, var(--accent) 30%, transparent), inset 0 1px 0 rgba(255,255,255,0.22) !important;
@@ -576,7 +572,7 @@ option { background: #0c0c14; color: var(--text-main); }
 }
 .pricing-card ul li, .pricing-card li { color: var(--text-muted) !important; }
 
-/* ---------- Obrazy / ramki ---------- */
+
 .preview-frame, .preview-img, .project-header, .preview-header {
     border-radius: 22px !important;
     border-color: var(--hairline) !important;
@@ -586,8 +582,8 @@ option { background: #0c0c14; color: var(--text-main); }
 .preview-img img, .project-header img { transition: transform .8s var(--ease); }
 .preview-img:hover img, .project-card:hover img { transform: scale(1.06); }
 
-/* ---------- Stopka ---------- */
-footer {
+
+    footer {
     background: rgba(255,255,255,0.035) !important;
     border-top: 1px solid var(--hairline) !important;
     color: var(--text-muted) !important;
@@ -607,7 +603,7 @@ hr { border-color: var(--hairline) !important; }
 }
 ::-webkit-scrollbar-thumb:hover { background: color-mix(in oklab, var(--accent) 65%, transparent); }
 
-/* ---------- Reveal on scroll ---------- */
+
 .lg-reveal {
     opacity: 0;
     transform: translateY(34px) scale(.985);
@@ -617,7 +613,7 @@ hr { border-color: var(--hairline) !important; }
 }
 .lg-reveal.is-in { opacity: 1; transform: none; filter: blur(0); }
 
-/* ---------- Nawigacja podglądu (apexcode) ---------- */
+
 .nav-bar {
     background: rgba(255,255,255,0.05) !important;
     border: 1px solid var(--hairline) !important;
@@ -720,7 +716,7 @@ hr { border-color: var(--hairline) !important; }
         document.addEventListener('DOMContentLoaded', loadOrders);
     </script>
 <script>
-/* === LIQUID GLASS INTERACTIONS (tylko warstwa wizualna) === */
+
 (function () {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var fine = window.matchMedia('(pointer: fine)').matches;
@@ -767,12 +763,12 @@ hr { border-color: var(--hairline) !important; }
         });
     }
 
-    /* ---- Pasek postępu scrolla ---- */
+   
     var bar = document.createElement('div');
     bar.className = 'lg-progress';
     document.body.appendChild(bar);
 
-    /* ---- Header: chowanie i zmiana przy scrollu ---- */
+    
     var header = document.querySelector('header');
     var last = 0;
     function onScroll() {
@@ -789,7 +785,6 @@ hr { border-color: var(--hairline) !important; }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    /* ---- Reveal on scroll ze staggerem ---- */
     if (!reduce && 'IntersectionObserver' in window) {
         var items = document.querySelectorAll(
             '.stat-card, .info-card, .project-card, .pricing-card, .order-card, .feature-card, ' +
@@ -810,7 +805,7 @@ hr { border-color: var(--hairline) !important; }
         });
     }
 
-    /* ---- Spotlight + 3D tilt na kartach ---- */
+    
     if (fine && !reduce) {
         var tiltSel = '.stat-card, .info-card, .project-card, .pricing-card, .order-card, .feature-card, .request-card';
         document.querySelectorAll(tiltSel).forEach(function (card) {
@@ -839,7 +834,7 @@ hr { border-color: var(--hairline) !important; }
         });
     }
 
-    /* ---- Płynne przejścia między podstronami ---- */
+   
     var overlay = document.createElement('div');
     overlay.className = 'lg-transition';
     document.body.appendChild(overlay);
