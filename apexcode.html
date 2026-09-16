@@ -288,9 +288,8 @@
         }
     </style>
 
-    <!-- === LIQUID GLASS THEME v2 (tylko wyglad) === -->
+    
 <style>
-
 
 :root {
     --bg: #06060a;
@@ -326,7 +325,6 @@ body {
 @media (pointer: fine) {
     html.lg-cursor, html.lg-cursor * { cursor: none !important; }
 }
-
 
 .bg-animation { background-color: var(--bg) !important; }
 .bg-animation::before,
@@ -373,7 +371,6 @@ body::after {
     box-shadow: 0 0 12px var(--theme-particle-shadow) !important;
 }
 
-
 .lg-cursor-dot, .lg-cursor-ring {
     position: fixed;
     top: 0; left: 0;
@@ -406,7 +403,6 @@ html.lg-hover .lg-cursor-ring {
 }
 html.lg-down .lg-cursor-ring { width: 28px; height: 28px; margin: -14px 0 0 -14px; }
 
-
 #preloader { background: var(--bg) !important; }
 .loading-bar-wrapper { background: rgba(255,255,255,0.08) !important; }
 .loading-bar-fill { background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important; }
@@ -433,7 +429,6 @@ html.lg-down .lg-cursor-ring { width: 28px; height: 28px; margin: -14px 0 0 -14p
     box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 70%, transparent);
     pointer-events: none;
 }
-
 
 header {
     top: 16px !important;
@@ -500,7 +495,6 @@ nav a::after {
 nav a:hover::after, nav a.active::after { transform: scaleX(1); transform-origin: left; }
 nav a:hover, nav a.active { color: #fff !important; }
 
-
 .section-title, .page-title {
     letter-spacing: -1.4px !important;
     background: linear-gradient(180deg, #ffffff 20%, rgba(255,255,255,0.58) 100%);
@@ -521,7 +515,6 @@ nav a:hover, nav a.active { color: #fff !important; }
 }
 @keyframes shimmer { to { background-position: 220% center; } }
 .subtitle, .page-header p { color: var(--text-muted) !important; }
-
 
 .hero h1, #home h1 { letter-spacing: -2.4px !important; }
 .hero-tag, .badge {
@@ -545,7 +538,6 @@ nav a:hover, nav a.active { color: #fff !important; }
 @keyframes sweep { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 .typing-box { color: var(--accent-2) !important; }
 
-
 .stat-card, .info-card, .project-card, .pricing-card, .order-card,
 .confirmation-card, .feature-card, .main-card, .preview-section,
 .order-form-container, .summary-box, .notice-box, .empty-state,
@@ -561,7 +553,6 @@ nav a:hover, nav a.active { color: #fff !important; }
     transform-style: preserve-3d;
     transition: transform .5s var(--ease), border-color .4s ease, box-shadow .5s var(--ease);
 }
-
 
 .stat-card::after, .info-card::after, .project-card::after, .pricing-card::after,
 .order-card::after, .feature-card::after, .main-card::after, .request-card::after {
@@ -601,7 +592,6 @@ nav a:hover, nav a.active { color: #fff !important; }
 .stat-card p, .info-card p, .project-desc, .price-note, .order-desc,
 .feature-card p, .detail-item, .summary-item { color: var(--text-muted) !important; }
 
-/* ---------- Pigułki ---------- */
 .tech-badge, .tech-stack span, .project-tag, .order-id, .order-date, .status-badge {
     background: rgba(255,255,255,0.07) !important;
     border: 1px solid var(--hairline) !important;
@@ -611,7 +601,6 @@ nav a:hover, nav a.active { color: #fff !important; }
     transition: transform .35s var(--ease), background .3s ease;
 }
 .tech-badge:hover, .tech-stack span:hover, .project-tag:hover { transform: translateY(-2px); background: rgba(255,255,255,0.13) !important; }
-
 
 .btn-primary, button.btn-primary, .select-package-btn, .btn-secondary,
 button.btn-secondary, .project-link-btn, .back-btn, .submit-btn {
@@ -661,7 +650,6 @@ button.btn-secondary, .project-link-btn, .back-btn, .submit-btn {
     color: #fff !important;
 }
 
-
 input, textarea, select {
     background: rgba(255,255,255,0.05) !important;
     border: 1px solid var(--hairline) !important;
@@ -682,7 +670,6 @@ input:focus, textarea:focus, select:focus {
 option { background: #0c0c14; color: var(--text-main); }
 .form-group label { color: rgba(233,238,252,0.82) !important; }
 
-
 .pricing-card.active, .pricing-card.featured, .pricing-card.selected {
     border-color: color-mix(in oklab, var(--accent) 65%, transparent) !important;
     box-shadow: 0 34px 90px rgba(0,0,0,0.62), 0 0 70px color-mix(in oklab, var(--accent) 30%, transparent), inset 0 1px 0 rgba(255,255,255,0.22) !important;
@@ -696,7 +683,6 @@ option { background: #0c0c14; color: var(--text-main); }
 }
 .pricing-card ul li, .pricing-card li { color: var(--text-muted) !important; }
 
-
 .preview-frame, .preview-img, .project-header, .preview-header {
     border-radius: 22px !important;
     border-color: var(--hairline) !important;
@@ -705,7 +691,6 @@ option { background: #0c0c14; color: var(--text-main); }
 .preview-img { overflow: hidden; }
 .preview-img img, .project-header img { transition: transform .8s var(--ease); }
 .preview-img:hover img, .project-card:hover img { transform: scale(1.06); }
-
 
 footer {
     background: rgba(255,255,255,0.035) !important;
@@ -727,7 +712,6 @@ hr { border-color: var(--hairline) !important; }
 }
 ::-webkit-scrollbar-thumb:hover { background: color-mix(in oklab, var(--accent) 65%, transparent); }
 
-
 .lg-reveal {
     opacity: 0;
     transform: translateY(34px) scale(.985);
@@ -736,7 +720,6 @@ hr { border-color: var(--hairline) !important; }
     transition-delay: var(--d, 0ms);
 }
 .lg-reveal.is-in { opacity: 1; transform: none; filter: blur(0); }
-
 
 .nav-bar {
     background: rgba(255,255,255,0.05) !important;
@@ -760,6 +743,24 @@ hr { border-color: var(--hairline) !important; }
     .lg-reveal { opacity: 1; transform: none; filter: none; }
 }
 
+@media (max-width: 768px) {
+    .nav-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        padding: 12px 16px !important;
+        border-radius: 18px !important;
+        width: 100% !important;
+    }
+    .back-btn {
+        display: block !important;
+        text-align: center !important;
+        min-height: 44px !important;
+        line-height: 20px !important;
+        padding: 12px 18px !important;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -768,7 +769,7 @@ hr { border-color: var(--hairline) !important; }
 
     <div class="container">
         <div class="nav-bar">
-            <!-- Poprawiono rozszerzenie z index.php na index.html -->
+            
             <a href="index.html" class="back-btn">&larr; Wróć do portfolio</a>
         </div>
 
@@ -839,7 +840,7 @@ hr { border-color: var(--hairline) !important; }
     var fine = window.matchMedia('(pointer: fine)').matches;
     var root = document.documentElement;
 
-   
+    
     if (fine && !reduce) {
         root.classList.add('lg-cursor');
         var dot = document.createElement('div');
@@ -885,7 +886,7 @@ hr { border-color: var(--hairline) !important; }
     bar.className = 'lg-progress';
     document.body.appendChild(bar);
 
-   
+    
     var header = document.querySelector('header');
     var last = 0;
     function onScroll() {
@@ -902,7 +903,7 @@ hr { border-color: var(--hairline) !important; }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-   
+    
     if (!reduce && 'IntersectionObserver' in window) {
         var items = document.querySelectorAll(
             '.stat-card, .info-card, .project-card, .pricing-card, .order-card, .feature-card, ' +
