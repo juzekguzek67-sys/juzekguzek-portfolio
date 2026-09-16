@@ -284,18 +284,6 @@ html.lg-down .lg-cursor-ring { width: 28px; height: 28px; margin: -14px 0 0 -14p
 .loading-bar-wrapper { background: rgba(255,255,255,0.08) !important; }
 .loading-bar-fill { background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important; }
 
-.lg-transition {
-    position: fixed;
-    inset: 0;
-    z-index: 2147482000;
-    pointer-events: none;
-    background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 85%, #06060a), color-mix(in oklab, var(--accent-2) 85%, #06060a));
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform .55s var(--ease);
-}
-.lg-transition.is-out { transform: scaleY(1); transform-origin: bottom; }
-
 .lg-progress {
     position: fixed;
     top: 0; left: 0;
@@ -783,6 +771,44 @@ hr { border-color: var(--hairline) !important; }
     }
 }
 
+@media (max-width: 900px) {
+    header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+    header.lg-hidden {
+        transform: translateX(-50%) translateY(0) !important;
+    }
+    header nav, .navbar-center {
+        display: none !important;
+    }
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
+    .bg-animation::before,
+    .bg-animation::after {
+        animation: none !important;
+        filter: blur(35px) !important;
+        width: 320px !important;
+        height: 320px !important;
+        opacity: 0.25 !important;
+    }
+    .bg-animation {
+        animation: none !important;
+    }
+    *, *::before, *::after {
+        -webkit-tap-highlight-color: transparent;
+    }
+    .card, .info-card, .project-card, .pricing-card, .order-card, .feature-card, .request-card {
+        transform: none !important;
+    }
+}
+#preloader {
+    pointer-events: none;
+}
+
 </style>
 </head>
 <body>
@@ -999,23 +1025,7 @@ hr { border-color: var(--hairline) !important; }
     }
 
     
-    var overlay = document.createElement('div');
-    overlay.className = 'lg-transition';
-    document.body.appendChild(overlay);
-
-    document.addEventListener('click', function (e) {
-        var a = e.target.closest ? e.target.closest('a') : null;
-        if (!a || reduce) return;
-        var href = a.getAttribute('href') || '';
-        if (!href || href.charAt(0) === '#' || a.target === '_blank' || href.indexOf('mailto:') === 0 ||
-            href.indexOf('tel:') === 0 || a.hasAttribute('download')) return;
-        if (a.hostname && a.hostname !== window.location.hostname) return;
-        e.preventDefault();
-        overlay.classList.add('is-out');
-        setTimeout(function () { window.location.href = href; }, 480);
-    });
-
-    window.addEventListener('pageshow', function () { overlay.classList.remove('is-out'); });
+    
 })();
 
 </script>
