@@ -1238,6 +1238,154 @@ hr { border-color: var(--hairline) !important; }
 }
 
 </style>
+
+<style>
+:root {
+    --bg: #0a0a0c !important;
+    --card-bg: rgba(22, 22, 26, 0.75) !important;
+    --card-border: rgba(255, 255, 255, 0.12) !important;
+    --accent: #ffffff !important;
+    --accent-hover: #e4e4e7 !important;
+    --text-main: #f4f4f6 !important;
+    --text-muted: #a1a1aa !important;
+    --border: rgba(255, 255, 255, 0.12) !important;
+    --shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+    --theme-glow-1: rgba(255, 255, 255, 0.22) !important;
+    --theme-glow-2: rgba(255, 255, 255, 0.12) !important;
+    --theme-particle: rgba(255, 255, 255, 0.7) !important;
+    --theme-particle-shadow: rgba(255, 255, 255, 0.4) !important;
+    --yellow: #ffffff !important;
+    --yellow-hover: #e4e4e7 !important;
+    --green: #ffffff !important;
+    --green-hover: #e4e4e7 !important;
+}
+
+body {
+    background-color: #0a0a0c !important;
+    color: #f4f4f6 !important;
+}
+
+.site-header {
+    background: rgba(10, 10, 12, 0.85) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-links a {
+    color: #a1a1aa !important;
+}
+.nav-links a:hover {
+    color: #ffffff !important;
+}
+
+.btn-primary, button.btn-primary, .submit-btn {
+    background: #ffffff !important;
+    color: #0a0a0c !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.18) !important;
+    cursor: pointer !important;
+}
+.btn-primary:hover, button.btn-primary:hover, .submit-btn:hover {
+    background: #e4e4e7 !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 28px rgba(255, 255, 255, 0.35) !important;
+}
+
+.btn-secondary, button.btn-secondary, .select-package-btn, .project-link-btn, .back-btn {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    cursor: pointer !important;
+}
+.btn-secondary:hover, button.btn-secondary:hover, .select-package-btn:hover, .project-link-btn:hover, .back-btn:hover {
+    background: #ffffff !important;
+    color: #0a0a0c !important;
+    border-color: #ffffff !important;
+}
+
+.project-card, .pricing-card, .order-card, .info-card, .stat-card, .review-card, .confirmation-card, .order-form-container {
+    background: rgba(18, 18, 22, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #f4f4f6 !important;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.5) !important;
+}
+
+.pricing-card.featured {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 14px 44px rgba(255, 255, 255, 0.12) !important;
+}
+
+.pricing-badge {
+    background: #ffffff !important;
+    color: #0a0a0c !important;
+}
+
+.summary-box, .notice-box, .tech-badge, .tech-stack span, .project-tag {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #e4e4e7 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    background: rgba(15, 15, 18, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25) !important;
+}
+
+.mobile-menu-drawer {
+    background: rgba(12, 12, 16, 0.98) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Custom cursor styling: dot + ring, with pointer / hand on clickable items */
+@media (pointer: fine) {
+    .lg-cursor * {
+        cursor: default;
+    }
+    .lg-cursor a, .lg-cursor button, .lg-cursor input, .lg-cursor textarea, .lg-cursor select, .lg-cursor [role='button'], .lg-cursor .project-card, .lg-cursor .pricing-card {
+        cursor: pointer !important;
+    }
+    .lg-cursor-dot {
+        position: fixed;
+        top: 0; left: 0;
+        width: 8px; height: 8px;
+        margin-left: -4px; margin-top: -4px;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+        pointer-events: none;
+        z-index: 999999;
+        transition: transform 0.05s linear, width 0.2s, height 0.2s;
+    }
+    .lg-cursor-ring {
+        position: fixed;
+        top: 0; left: 0;
+        width: 32px; height: 32px;
+        margin-left: -16px; margin-top: -16px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.55);
+        background: rgba(255, 255, 255, 0.04);
+        pointer-events: none;
+        z-index: 999998;
+        transition: transform 0.12s ease-out, border-color 0.2s, background 0.2s, width 0.2s, height 0.2s, margin 0.2s;
+    }
+    .lg-hover .lg-cursor-ring {
+        width: 44px; height: 44px;
+        margin-left: -22px; margin-top: -22px;
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.3);
+    }
+    .lg-down .lg-cursor-ring {
+        transform: scale(0.85);
+        background: rgba(255, 255, 255, 0.25);
+    }
+}
+</style>
+
 </head>
 <body class="no-scroll">
 
@@ -1272,6 +1420,8 @@ hr { border-color: var(--hairline) !important; }
                 <li><a href="/#info">Informacje</a></li>
                 <li><a href="/#works">Realizacje</a></li>
                 <li><a href="zamowienia.html">Zamów stronę</a></li>
+                <li><a href="partnerstwa.html">Partnerstwa</a></li>
+                <li><a href="moje-zapytania.html">Moje zapytania</a></li>
                 <li><a href="/#contact">Kontakt</a></li>
             </ul>
         </nav>
@@ -1284,12 +1434,13 @@ hr { border-color: var(--hairline) !important; }
     <div class=mobile-menu-backdrop id=mobileMenuBackdrop></div>
     <div class=mobile-menu-drawer id=mobileMenuDrawer>
         <ul>
-            <li><a href=#home>Start</a></li>
-            <li><a href=#info>Informacje</a></li>
-            <li><a href=#works>Realizacje</a></li>
-            <li><a href=zamowienia.html>Zamów stronę</a></li>
-            <li><a href=moje-zapytania.html>Moje zapytania</a></li>
-            <li><a href=#contact>Kontakt</a></li>
+            <li><a href="/#home">Start</a></li>
+            <li><a href="/#info">Informacje</a></li>
+            <li><a href="/#works">Realizacje</a></li>
+            <li><a href="zamowienia.html">Zamów stronę</a></li>
+            <li><a href="partnerstwa.html">Partnerstwa</a></li>
+            <li><a href="moje-zapytania.html">Moje zapytania</a></li>
+            <li><a href="/#contact">Kontakt</a></li>
         </ul>
     </div>
 
