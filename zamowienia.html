@@ -8,7 +8,7 @@
     <meta name="description" content="Złóż zamówienie na profesjonalną stronę WWW lub system internetowy u JuzekGuzek. Wypełnij formularz i otrzymaj darmową wycenę!">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -1119,7 +1119,7 @@
             const max = budgetRange.max;
             const percentage = ((val - min) / (max - min)) * 100;
             
-            budgetRange.style.background = `linear-gradient(to right, #22D3EE 0%, #7C6CFF ${percentage}\%, rgba(255, 255, 255, 0.1)${percentage}%, rgba(255, 255, 255, 0.1) 100%)`;
+            budgetRange.style.background = `linear-gradient(to right, #22D3EE 0%, #7C6CFF ${percentage}%, rgba(255, 255, 255, 0.1)${percentage}%, rgba(255, 255, 255, 0.1) 100%)`;
             
             if (val >= 3000) {
                 budgetDisplay.textContent = "3000+ zł (Indywidualna)";
@@ -1181,11 +1181,61 @@
                 type: type,
                 budget: budget,
                 desc: desc,
+                description: desc,
+                opis: desc,
                 status: 'Oczekuje na kontakt'
             };
 
             const payload = {
-                content: `**Nowe zapytanie o stronę - JuzekGuzek / VOID DESIGN**\n> **ID:** \`${newOrder.id}\`\n> **Od:** ${name}\n> **Discord:** ${discord}\n> **E-mail:**${email}\n> **Usługa:** ${type}\n> **Budżet:** ${budget}\n\n**Opis projektu:**\n\`\`\`text\n${desc}\n\`\`\``
+                id: newOrder.id,
+                orderId: newOrder.id,
+                name: name,
+                nick: name,
+                discord: discord,
+                email: email,
+                contact: email,
+                type: type,
+                websiteType: type,
+                package: type,
+                pakiet: type,
+                budget: budget,
+                price: budget,
+                cena: budget,
+                desc: desc,
+                description: desc,
+                opis: desc,
+                projectDesc: desc,
+                date: newOrder.date,
+                data: newOrder.date,
+                promoCode: "Brak",
+                code: "Brak",
+                username: "JuzekGuzek Bot",
+                avatar_url: "https://i.imgur.com/CW4ZVKz.png",
+                embeds: [
+                    {
+                        title: `Nowe Zamówienie: ${newOrder.id}`,
+                        description: `Złożono nowe zapytanie o wycenę ze strony **JuzekGuzek - Web & Design**.`,
+                        color: 2282478,
+                        thumbnail: {
+                            url: "https://i.imgur.com/CW4ZVKz.png"
+                        },
+                        fields: [
+                            { name: "ID Zamówienia", value: `\`${newOrder.id}\``, inline: true },
+                            { name: "Zamawiający", value: `**${name}**`, inline: true },
+                            { name: "Discord", value: `\`${discord}\``, inline: true },
+                            { name: "Kontakt / Email", value: `\`${email}\``, inline: true },
+                            { name: "Typ Usługi", value: `**${type}**`, inline: true },
+                            { name: "Budżet Klienta", value: `**${budget}**`, inline: true },
+                            { name: "Opis Projektu", value: `\`\`\`text\n${desc}\n\`\`\``, inline: false },
+                            { name: "Data Złożenia", value: `\`${newOrder.date}\``, inline: true }
+                        ],
+                        footer: {
+                            text: "System Zamówień JuzekGuzek • Portfolio Web & Design",
+                            icon_url: "https://i.imgur.com/CW4ZVKz.png"
+                        },
+                        timestamp: new Date().toISOString()
+                    }
+                ]
             };
 
             fetch('https://juzekguzek-webhook.juzekguzek67.workers.dev', {
