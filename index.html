@@ -62,6 +62,73 @@
             overflow: hidden;
         }
 
+        /* BANNER POWIADOMIENIA */
+        .system-notice {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(220, 38, 38, 0.15); 
+            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fca5a5;
+            z-index: 100001; 
+            padding: 12px 45px 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transform: translateY(-100%);
+            transition: transform 0.4s var(--ease);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .system-notice.show {
+            transform: translateY(0);
+        }
+
+        .system-notice i.icon {
+            color: #ef4444;
+            font-size: 1.1rem;
+        }
+
+        .system-notice strong {
+            color: #fef2f2;
+        }
+
+        .system-notice-close {
+            background: transparent;
+            border: none;
+            color: #fca5a5;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .system-notice-close:hover {
+            opacity: 1;
+        }
+
+        /* Modyfikacja paska nawigacji gdy powiadomienie jest widoczne */
+        body.has-notice header {
+            top: 65px;
+        }
+        body.has-notice header.lg-scrolled {
+            top: 55px;
+        }
+        body.has-notice .mobile-menu-drawer {
+            top: 130px;
+        }
+
         #preloader {
             position: fixed;
             inset: 0;
@@ -232,7 +299,7 @@
             align-items: center;
             justify-content: space-between;
             z-index: 1000;
-            transition: all 0.4s var(--ease);
+            transition: all 0.4s var(--ease), top 0.4s ease;
         }
 
         header.lg-scrolled {
@@ -880,6 +947,15 @@
 </head>
 <body class="no-scroll">
 
+    <!-- DODANY PASEK POWIADOMIENIA -->
+    <div id="system-notice" class="system-notice">
+        <i class="fa-solid fa-triangle-exclamation icon"></i>
+        <span><strong>Ważne:</strong> Jeżeli wysłałeś zapytanie przez ostatnie 24h, musisz wysłać je ponownie z powodu błędu formularza, który dzisiaj występował.</span>
+        <button class="system-notice-close" onclick="closeSystemNotice()" aria-label="Zamknij">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
     <div id="preloader">
         <div class="loader-wrapper">
             <div class="loader-track track-outer"></div>
@@ -1116,12 +1192,29 @@
     </section>
 
     <script>
+        // FUNKCJA ZAMYKANIA SYSTEM NOTICE
+        function closeSystemNotice() {
+            const notice = document.getElementById('system-notice');
+            if (notice) notice.classList.remove('show');
+            document.body.classList.remove('has-notice');
+            localStorage.setItem('notice_24h_error_closed', 'true');
+        }
+
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => {
                 if (preloader) {
                     preloader.classList.add('fade-out');
                     document.body.classList.remove('no-scroll');
+                }
+
+                // POKAŻ PASEK POWIADOMIENIA JEŚLI NIE ZOSTAŁ ZAMKNIĘTY
+                if (!localStorage.getItem('notice_24h_error_closed')) {
+                    const notice = document.getElementById('system-notice');
+                    if (notice) {
+                        notice.classList.add('show');
+                        document.body.classList.add('has-notice');
+                    }
                 }
             }, 1500); 
         });
