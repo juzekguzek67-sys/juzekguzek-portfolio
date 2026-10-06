@@ -23,12 +23,14 @@
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
 
     <style>
         :root {
-            --bg: #0a0a0c;
+            --bg: #050505;
             --card-bg: rgba(18, 18, 24, 0.75);
             --card-border: rgba(255, 255, 255, 0.1);
             --text-main: #f4f4f6;
@@ -62,7 +64,6 @@
             overflow: hidden;
         }
 
-        /* BANNER POWIADOMIENIA */
         .system-notice {
             position: fixed;
             top: 0;
@@ -118,7 +119,6 @@
             opacity: 1;
         }
 
-        /* Modyfikacja paska nawigacji gdy powiadomienie jest widoczne */
         body.has-notice header {
             top: 65px;
         }
@@ -408,6 +408,53 @@
             margin: 0 auto;
         }
 
+        #home {
+            position: relative;
+            text-align: center;
+            align-items: center;
+            width: 100%;
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 120px;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-bg-blur {
+            position: absolute;
+            inset: -40px;
+            background-image: url('https://i.imgur.com/kTxqSgF.jpeg');
+            background-position: center 40%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(10px) brightness(0.35) contrast(1.1);
+            transform: scale(0.88);
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(5, 5, 5, 0.2) 0%, rgba(5, 5, 5, 0.6) 60%, #050505 100%);
+        }
+
+        .hero-bottom-transition {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(to bottom, transparent, #050505);
+            z-index: 2;
+            pointer-events: none;
+        }
+
         .section-title {
             font-size: 2.4rem;
             font-weight: 800;
@@ -423,7 +470,14 @@
         }
 
         .hero-content {
-            max-width: 850px;
+            max-width: 950px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
         }
 
         .hero-tag {
@@ -431,37 +485,77 @@
             align-items: center;
             gap: 8px;
             font-family: 'JetBrains Mono', monospace;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.8rem;
-            padding: 6px 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 6px 18px;
             border-radius: 999px;
             margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 4.2rem;
+            font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
+            margin-bottom: 28px;
+            letter-spacing: -1.5px;
+            color: #ffffff;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+            text-transform: none;
+        }
+
+        .hero-pills {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            padding: 10px 22px;
+            border-radius: 999px;
+            margin-bottom: 30px;
+        }
+
+        .pill-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
             color: #ffffff;
         }
 
+        .pill-item i {
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        .pill-divider {
+            color: rgba(255, 255, 255, 0.25);
+            font-weight: 300;
+        }
+
         .typing-box {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            min-height: 30px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 35px;
+            max-width: 720px;
+            line-height: 1.6;
         }
 
         .hero-buttons {
             display: flex;
             gap: 16px;
             align-items: center;
+            justify-content: center;
         }
 
         .btn-primary, button.btn-primary {
@@ -471,7 +565,7 @@
             gap: 10px;
             background: #ffffff;
             color: #0a0a0c;
-            padding: 15px 30px;
+            padding: 15px 32px;
             font-weight: 700;
             font-size: 0.92rem;
             text-decoration: none;
@@ -495,10 +589,10 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 15px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 15px 32px;
             font-weight: 700;
             font-size: 0.92rem;
             text-decoration: none;
@@ -510,8 +604,8 @@
         }
 
         .btn-secondary:hover, button.btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.35);
             transform: translateY(-3px);
             color: #ffffff;
         }
@@ -521,26 +615,44 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-top: 60px;
-            max-width: 800px;
+            width: 100%;
+            max-width: 850px;
         }
 
         .stat-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 24px;
+            padding: 28px 24px;
             border-radius: var(--radius);
             backdrop-filter: blur(20px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s var(--ease), border-color 0.3s ease;
+            transition: transform 0.3s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
         }
 
         .stat-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+        }
+
+        .stat-emoji {
+            font-size: 1.6rem;
+            margin-bottom: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .stat-card h4 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 6px;
@@ -615,80 +727,193 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 30px;
+            gap: 32px;
         }
 
         .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px;
+            background: linear-gradient(145deg, rgba(20, 20, 28, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 24px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
-            transition: all 0.35s var(--ease);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s var(--ease);
             position: relative;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
         }
 
         .project-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.28);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+            border-color: rgba(124, 108, 255, 0.35);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(124, 108, 255, 0.15);
         }
 
         .card-half-banner {
             width: 100%;
-            height: 210px;
-            border-radius: 14px;
-            overflow: hidden;
-            margin-bottom: 22px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.4);
+            overflow: hidden;
         }
 
-        .card-half-banner img {
+        .banner-mockup-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: rgba(10, 10, 14, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .mockup-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .mockup-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot.red { background: #ff5f56; }
+        .mockup-dot.yellow { background: #ffbd2e; }
+        .mockup-dot.green { background: #27c93f; }
+
+        .mockup-status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mockup-status.active {
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.25);
+            background: rgba(52, 211, 153, 0.08);
+        }
+
+        .mockup-status.closed {
+            color: #f87171;
+            border-color: rgba(248, 113, 113, 0.25);
+            background: rgba(248, 113, 113, 0.08);
+        }
+
+        .status-dot-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .mockup-status.active .status-dot-pulse {
+            background: #34d399;
+            box-shadow: 0 0 8px #34d399;
+        }
+
+        .mockup-status.closed .status-dot-pulse {
+            background: #f87171;
+            box-shadow: 0 0 8px #f87171;
+        }
+
+        .banner-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .banner-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .project-card:hover .card-half-banner img {
-            transform: scale(1.06);
+        .project-card:hover .banner-img-wrapper img {
+            transform: scale(1.07);
+        }
+
+        .project-content {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .project-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            gap: 12px;
+        }
+
+        .project-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .project-title-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            color: #7C6CFF;
+            flex-shrink: 0;
         }
 
         .project-info h3 {
-            font-size: 1.45rem;
+            font-size: 1.4rem;
             color: #ffffff;
             font-weight: 800;
             letter-spacing: -0.5px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .project-tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.7rem;
+            background: linear-gradient(135deg, rgba(124, 108, 255, 0.15), rgba(34, 211, 238, 0.15));
+            border: 1px solid rgba(124, 108, 255, 0.3);
             padding: 4px 10px;
-            border-radius: 6px;
-            color: var(--text-muted);
-            font-weight: 600;
-            display: inline-block;
+            border-radius: 8px;
+            color: #c084fc;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.5px;
         }
 
         .project-desc {
             color: var(--text-muted);
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             line-height: 1.65;
             margin-bottom: 25px;
         }
@@ -705,7 +930,7 @@
 
         .tech-stack {
             display: flex;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
@@ -714,9 +939,18 @@
             font-size: 0.68rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 4px 8px;
-            border-radius: 6px;
-            color: #d4d4d8;
+            padding: 5px 10px;
+            border-radius: 8px;
+            color: #e4e4e7;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .tech-badge i {
+            font-size: 0.8rem;
+            color: #22d3ee;
         }
 
         .project-link-btn {
@@ -937,7 +1171,9 @@
             .header-center, nav ul { display: none; }
             .mobile-menu-toggle { display: flex; }
             .mobile-menu-backdrop, .mobile-menu-drawer { display: block; }
-            .hero h1 { font-size: 2.8rem; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
+            .hero-pills { border-radius: 16px; flex-direction: column; gap: 8px; }
+            .pill-divider { display: none; }
             .hero-stats { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
             .hero-buttons { flex-direction: column; width: 100%; }
@@ -947,10 +1183,9 @@
 </head>
 <body class="no-scroll">
 
-    <!-- DODANY PASEK POWIADOMIENIA -->
     <div id="system-notice" class="system-notice">
         <i class="fa-solid fa-triangle-exclamation icon"></i>
-        <span><strong>Ważne:</strong> Jeżeli wysłałeś zapytanie przez ostatnie 24h, musisz wysłać je ponownie z powodu błędu formularza, który dzisiaj występował.</span>
+        <span><strong>Informacja systemowa:</strong> Wszystkie zapytania wysłane w ciągu ostatnich 24 godzin zostały przetworzone. W razie braku odpowiedzi prosimy o ponowny kontakt.</span>
         <button class="system-notice-close" onclick="closeSystemNotice()" aria-label="Zamknij">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -1023,35 +1258,55 @@
     </div>
 
     <section id="home">
+        <div class="hero-bg-container">
+            <div class="hero-bg-blur"></div>
+            <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="hero-bottom-transition"></div>
+
         <div class="hero-content">
             <div class="hero-tag">
-                <i class="fa-solid fa-code"></i> PROFESJONALNE STRONY WWW & SYSTEMY
+                <i class="fa-solid fa-code"></i> JUZEKGUZEK
             </div>
-            <h1>Stwórz ze mną swoją<br>wymarzoną stronę.</h1>
-            <div class="typing-box">
-                <span id="typed"></span>
+            
+            <h1>Nowoczesne strony i systemy WWW</h1>
+
+            <div class="hero-pills">
+                <div class="pill-item"><i class="fa-solid fa-globe"></i> Strony dla Firm i Projektów</div>
+                <span class="pill-divider">|</span>
+                <div class="pill-item"><i class="fa-solid fa-code"></i> Autorski Kod</div>
+                <span class="pill-divider">|</span>
+                <div class="pill-item"><i class="fa-solid fa-bolt"></i> Wysoka Wydajność</div>
             </div>
+
+            <p class="typing-box">
+                Projektuję ultra-szybkie, dopracowane wizualnie strony WWW oraz zaawansowane aplikacje webowe zorientowane na wynik i doskonałe doświadczenie użytkownika.
+            </p>
+
             <div class="hero-buttons">
                 <a href="zamowienia.html" class="btn-primary">
-                    Rozpocznij współpracę <i class="fa-solid fa-arrow-right"></i>
+                    <i class="fa-solid fa-calculator"></i> Darmowa wycena projektu
                 </a>
                 <a href="/#works" class="btn-secondary">
-                    Zobacz realizacje
+                    <i class="fa-solid fa-trophy"></i> Zobacz moje realizacje
                 </a>
             </div>
 
             <div class="hero-stats">
                 <div class="stat-card">
+                    <span class="stat-emoji"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i></span>
                     <h4>100%</h4>
-                    <p>Autorski kod bez ciężkich szablonów</p>
+                    <p>Optymalny kod bez zbędnego balastu</p>
                 </div>
                 <div class="stat-card">
+                    <span class="stat-emoji"><i class="fa-solid fa-bullseye" style="color: #38bdf8;"></i></span>
                     <h4>Indywidualnie</h4>
-                    <p>Dopasowanie pod każdy projekt</p>
+                    <p>Unikalne podejście do wizji klienta</p>
                 </div>
                 <div class="stat-card">
+                    <span class="stat-emoji"><i class="fa-solid fa-rocket" style="color: #a855f7;"></i></span>
                     <h4>Szybko</h4>
-                    <p>Sprawna realizacja i stały kontakt</p>
+                    <p>Terminowa realizacja i stały kontakt</p>
                 </div>
             </div>
         </div>
@@ -1065,7 +1320,7 @@
                     <i class="fa-solid fa-clock-rotate-left"></i>
                 </div>
                 <h3>Elastyczny czas realizacji</h3>
-                <p>Każdy projekt traktuję priorytetowo i indywidualnie. Harmonogram prac oraz ostateczny termin oddania projektu są ściśle dopasowywane do stopnia skomplikowania Twojego zamówienia, gwarantując terminowość i najwyższą staranność.</p>
+                <p>Kładę nacisk na płynną realizację bez kompromisów jakościowych. Czas wykonania ustalamy indywidualnie, dopasowując go precyzyjnie do wymagań projektu.</p>
             </div>
 
             <div class="info-card">
@@ -1073,7 +1328,7 @@
                     <i class="fa-solid fa-gem"></i>
                 </div>
                 <h3>Przejrzysta wycena</h3>
-                <p>Nie stosuję sztywnych, ukrytych kosztów. Wycena każdego serwisu, strony internetowej czy systemu opiera się na Twoich realnych potrzebach, dzięki czemu inwestujesz dokładnie w te funkcjonalności, które przyniosą wartość Twojemu projektowi.</p>
+                <p>Każdy projekt wyceniam na podstawie jego realnych funkcjonalności i zaawansowania. Otrzymujesz jasne warunki bez jakichkolwiek ukrytych opłat.</p>
             </div>
 
             <div class="info-card">
@@ -1081,7 +1336,7 @@
                     <i class="fa-solid fa-bolt"></i>
                 </div>
                 <h3>Czysty kod i wydajność</h3>
-                <p>Wszystkie projekty buduję w 100% autorsko od podstaw. Unikam opierania się na ciężkich, gotowych szablonach, co zapewnia niespotykaną prędkość ładowania, pełne bezpieczeństwo oraz bezproblemową skalowalność w przyszłości.</p>
+                <p>Tworzę rozwiązania od zera z dbałością o najwyższe standardy wydajności. Brak schematycznych szablonów gwarantuje perfekcyjną szybkość i elastyczność.</p>
             </div>
         </div>
     </section>
@@ -1091,56 +1346,102 @@
         <div class="projects-grid">
             
             <div class="project-card">
-                <div>
-                    <div class="card-half-banner">
-                        <img src="https://i.imgur.com/imPvGCq.png" alt="Void Design Banner">
-                    </div>
-                    <div class="project-header">
-                        <div class="project-info">
-                            <h3>VOID DESIGN</h3>
-                            <span class="project-tag">BOTY DISCORD & STRONY WWW</span>
+                <div class="card-half-banner">
+                    <div class="banner-mockup-bar">
+                        <div class="mockup-dots">
+                            <span class="mockup-dot red"></span>
+                            <span class="mockup-dot yellow"></span>
+                            <span class="mockup-dot green"></span>
+                        </div>
+                        <div class="mockup-status active">
+                            <span class="status-dot-pulse"></span> AKTYWNY
                         </div>
                     </div>
-                    <p class="project-desc">
-                        Zajmują się pisaniem zaawansowanych botów Discord oraz projektowaniem i tworzeniem profesjonalnych stron WWW.
-                    </p>
-                </div>
-                <div class="project-footer">
-                    <div class="tech-stack">
-                        <span class="tech-badge">DISCORD BOTS</span>
-                        <span class="tech-badge">STRONY WWW</span>
-                        <span class="tech-badge">WEB DESIGN</span>
+                    <div class="banner-img-wrapper">
+                        <img src="https://i.imgur.com/imPvGCq.png" alt="Void Design Banner">
                     </div>
-                    <a href="http://voiddesign.com.pl/" target="_blank" class="project-link-btn btn-secondary">
-                        Odwiedź stronę <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                </div>
+
+                <div class="project-content">
+                    <div>
+                        <div class="project-header">
+                            <div class="project-title-wrapper">
+                                <div class="project-title-icon">
+                                    <i class="fa-solid fa-gem"></i>
+                                </div>
+                                <div class="project-info">
+                                    <h3>VOID DESIGN</h3>
+                                    <span class="project-tag">
+                                        <i class="fa-solid fa-sparkles"></i> BOTY DISCORD & STRONY WWW
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            Oficjalna marka oferująca autorskie strony internetowe oraz zaawansowane boty Discord dopasowane pod indywidualne potrzeby społeczności.
+                        </p>
+                    </div>
+
+                    <div class="project-footer">
+                        <div class="tech-stack">
+                            <span class="tech-badge"><i class="fa-brands fa-discord"></i> DISCORD BOTS</span>
+                            <span class="tech-badge"><i class="fa-solid fa-code"></i> STRONY WWW</span>
+                            <span class="tech-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> WEB DESIGN</span>
+                        </div>
+                        <a href="http://voiddesign.com.pl/" target="_blank" class="project-link-btn btn-secondary">
+                            Odwiedź stronę <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class="project-card">
-                <div>
-                    <div class="card-half-banner">
-                        <img src="https://i.imgur.com/6I6dtzN.png" alt="ApexCode Banner">
-                    </div>
-                    <div class="project-header">
-                        <div class="project-info">
-                            <h3>APEXCODE.PL</h3>
-                            <span class="project-tag">MINECRAFT PLUGINS & SCRIPTS</span>
+                <div class="card-half-banner">
+                    <div class="banner-mockup-bar">
+                        <div class="mockup-dots">
+                            <span class="mockup-dot red"></span>
+                            <span class="mockup-dot yellow"></span>
+                            <span class="mockup-dot green"></span>
+                        </div>
+                        <div class="mockup-status closed">
+                            <span class="status-dot-pulse"></span> ZAMKNIĘTY
                         </div>
                     </div>
-                    <p class="project-desc">
-                        Zajmują się pisaniem profesjonalnych pluginów oraz skryptów do gry Minecraft.
-                    </p>
-                </div>
-                <div class="project-footer">
-                    <div class="tech-stack">
-                        <span class="tech-badge">PLUGINY MC</span>
-                        <span class="tech-badge">SKRYPTY</span>
-                        <span class="tech-badge">MINECRAFT</span>
+                    <div class="banner-img-wrapper">
+                        <img src="https://i.imgur.com/6I6dtzN.png" alt="ApexCode Banner">
                     </div>
-                    <button type="button" class="project-link-btn btn-secondary" onclick="showNotice('Projekt został zamknięty.')">
-                        Odwiedź stronę <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                </div>
+
+                <div class="project-content">
+                    <div>
+                        <div class="project-header">
+                            <div class="project-title-wrapper">
+                                <div class="project-title-icon" style="color: #f59e0b;">
+                                    <i class="fa-solid fa-cube"></i>
+                                </div>
+                                <div class="project-info">
+                                    <h3>APEXCODE.PL</h3>
+                                    <span class="project-tag" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.1);">
+                                        <i class="fa-solid fa-cubes"></i> MINECRAFT PLUGINS & SCRIPTS
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            Rozbudowana platforma programistyczna skoncentrowana na tworzeniu autorskich pluginów i skryptów dla serwerów Minecraft.
+                        </p>
+                    </div>
+
+                    <div class="project-footer">
+                        <div class="tech-stack">
+                            <span class="tech-badge"><i class="fa-solid fa-puzzle-piece"></i> PLUGINY MC</span>
+                            <span class="tech-badge"><i class="fa-solid fa-terminal"></i> SKRYPTY</span>
+                            <span class="tech-badge"><i class="fa-solid fa-gamepad"></i> MINECRAFT</span>
+                        </div>
+                        <button type="button" class="project-link-btn btn-secondary" onclick="showNotice('Projekt został zamknięty.')">
+                            Odwiedź stronę <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -1192,7 +1493,6 @@
     </section>
 
     <script>
-        // FUNKCJA ZAMYKANIA SYSTEM NOTICE
         function closeSystemNotice() {
             const notice = document.getElementById('system-notice');
             if (notice) notice.classList.remove('show');
@@ -1208,7 +1508,6 @@
                     document.body.classList.remove('no-scroll');
                 }
 
-                // POKAŻ PASEK POWIADOMIENIA JEŚLI NIE ZOSTAŁ ZAMKNIĘTY
                 if (!localStorage.getItem('notice_24h_error_closed')) {
                     const notice = document.getElementById('system-notice');
                     if (notice) {
@@ -1217,17 +1516,6 @@
                     }
                 }
             }, 1500); 
-        });
-
-        new Typed('#typed', {
-            strings: [
-                "Nowoczesne podejście, czysty kod i unikalny styl.",
-                "Stwórz stronę, która wyróżni Cię w sieci.",
-                "Zrealizuj swój projekt szybko i profesjonalnie."
-            ],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true
         });
 
         const container = document.getElementById('bg-animation');
@@ -1292,7 +1580,7 @@
             const backdrop = document.getElementById('mobileMenuBackdrop');
             if (!toggleBtn || !drawer || !backdrop) return;
 
-            function openMenu() {
+            function orgMenu() {
                 drawer.classList.add('is-open');
                 backdrop.classList.add('is-open');
                 document.body.classList.add('no-scroll');
@@ -1307,7 +1595,7 @@
             toggleBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const isOpen = drawer.classList.contains('is-open');
-                if (isOpen) closeMenu(); else openMenu();
+                if (isOpen) closeMenu(); else orgMenu();
             });
 
             backdrop.addEventListener('click', closeMenu);
